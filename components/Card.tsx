@@ -1,61 +1,20 @@
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 
-const posts = [
-  {
-    id: 1,
-    title: "สิ่งประดิษฐ์จากวัสดุรีไซเคิล",
-    href: "blog/1",
-    description:
-      "สิ่งประดิษฐ์ต่าง ๆ ที่มาของคำ ที่บอกถึงหลาย ๆ ความหมาย ในที่หนึ่งหมายถึงการนำวัสดุต่าง ๆ มาสร้างสิ่งใหม่ ๆ",
-    date: "Dec 25, 2020",
-    datetime: "2020",
-    category: { title: "Products", href: "#" },
-    author: {
-      name: "Sell Recycle Products",
-      role: "Group",
-      href: "#",
-      imageUrl:
-        "https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-1/301439850_521237383210425_784689343154362364_n.jpg?stp=cp0_dst-jpg_p40x40&_nc_cat=103&ccb=1-7&_nc_sid=f4b9fd&_nc_eui2=AeH5s9DF_JGvYGtk3_k-4sbsgaycFamuA8-BrJwVqa4Dzz0F9-tbhXh0CY9BB__o8E13Z-vY9kWDYb3nLnAFGxpw&_nc_ohc=W8wYrUlSvHkQ7kNvgG3eXzr&_nc_ht=scontent.fbkk22-3.fna&oh=00_AYACKgRIrH7H5cep1zEUCSWI5bw_oEYCjPr3GzN2unDEjw&oe=66B105DD",
-    },
-  },
-  {
-    id: 2,
-    title: "สิ่งประดิษฐ์จากวัสดุรีไซเคิล",
-    href: "#",
-    description:
-      "สิ่งประดิษฐ์ต่าง ๆ ที่มาของคำ ที่บอกถึงหลาย ๆ ความหมาย ในที่หนึ่งหมายถึงการนำวัสดุต่าง ๆ มาสร้างสิ่งใหม่ ๆ",
-    date: "Dec 25, 2020",
-    datetime: "2020",
-    category: { title: "Products", href: "#" },
-    author: {
-      name: "Sell Recycle Products",
-      role: "Group",
-      href: "#",
-      imageUrl:
-        "https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-1/301439850_521237383210425_784689343154362364_n.jpg?stp=cp0_dst-jpg_p40x40&_nc_cat=103&ccb=1-7&_nc_sid=f4b9fd&_nc_eui2=AeH5s9DF_JGvYGtk3_k-4sbsgaycFamuA8-BrJwVqa4Dzz0F9-tbhXh0CY9BB__o8E13Z-vY9kWDYb3nLnAFGxpw&_nc_ohc=W8wYrUlSvHkQ7kNvgG3eXzr&_nc_ht=scontent.fbkk22-3.fna&oh=00_AYACKgRIrH7H5cep1zEUCSWI5bw_oEYCjPr3GzN2unDEjw&oe=66B105DD",
-    },
-  },
-  {
-    id: 3,
-    title: "สิ่งประดิษฐ์จากวัสดุรีไซเคิล",
-    href: "#",
-    description:
-      "สิ่งประดิษฐ์ต่าง ๆ ที่มาของคำ ที่บอกถึงหลาย ๆ ความหมาย ในที่หนึ่งหมายถึงการนำวัสดุต่าง ๆ มาสร้างสิ่งใหม่ ๆ",
-    date: "Dec 25, 2020",
-    datetime: "2020",
-    category: { title: "Products", href: "#" },
-    author: {
-      name: "Sell Recycle Products",
-      role: "Group",
-      href: "#",
-      imageUrl:
-        "https://scontent.fbkk22-3.fna.fbcdn.net/v/t39.30808-1/301439850_521237383210425_784689343154362364_n.jpg?stp=cp0_dst-jpg_p40x40&_nc_cat=103&ccb=1-7&_nc_sid=f4b9fd&_nc_eui2=AeH5s9DF_JGvYGtk3_k-4sbsgaycFamuA8-BrJwVqa4Dzz0F9-tbhXh0CY9BB__o8E13Z-vY9kWDYb3nLnAFGxpw&_nc_ohc=W8wYrUlSvHkQ7kNvgG3eXzr&_nc_ht=scontent.fbkk22-3.fna&oh=00_AYACKgRIrH7H5cep1zEUCSWI5bw_oEYCjPr3GzN2unDEjw&oe=66B105DD",
-    },
-  },
-];
+const fetchBlogs = async () => {
+  try {
+    const response = axios.get(`${process.env.NEXT_PUBLIC_MOVIE_API}/api/movies`);
+    return (await response).data;
+  } catch (error) {
+    console.log("error", error);
+    return [];
+  }
+};
 
-export default function Card() {
+export default async function Card() {
+  const posts = await fetchBlogs();
+
   return (
     <div className="bg-white py-24 sm:py-32 relative isolate overflow-hidden h-screen" id="blog">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -71,25 +30,25 @@ export default function Card() {
           <Link href="blog">เข้าสู่บทความ</Link>
         </div>
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {posts.map((post) => (
+          {posts.map((post: any) => (
             <article
               key={post.id}
               className="flex max-w-xl flex-col items-start justify-between"
             >
               <div className="flex items-center gap-x-4 text-xs">
-                <time dateTime={post.datetime} className="text-gray-500">
-                  {post.date}
+                <time dateTime={post.id} className="text-gray-500">
+                  {post.id}
                 </time>
                 <Link
-                  href={post.category.href}
+                  href={`blog/${post.id}`}
                   className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
                 >
-                  {post.category.title}
+                  {post.type}
                 </Link>
               </div>
               <div className="group relative">
                 <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                  <Link href={post.href}>
+                  <Link href={`blog/${post.id}`}>
                     <span className="absolute inset-0" />
                     {post.title}
                   </Link>
@@ -98,7 +57,7 @@ export default function Card() {
                   {post.description}
                 </p>
               </div>
-              <div className="relative mt-8 flex items-center gap-x-4">
+              {/* <div className="relative mt-8 flex items-center gap-x-4">
                 <Image
                   alt=""
                   src={post.author.imageUrl}
@@ -115,7 +74,7 @@ export default function Card() {
                   </p>
                   <p className="text-gray-600">{post.author.role}</p>
                 </div>
-              </div>
+              </div> */}
             </article>
           ))}
         </div>

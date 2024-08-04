@@ -24,11 +24,6 @@ const links = [
     link: "More",
     name: "More",
   },
-  {
-    id: 5,
-    link: "Login",
-    name: "Login",
-  },
 ];
 
 const sideArticles = [

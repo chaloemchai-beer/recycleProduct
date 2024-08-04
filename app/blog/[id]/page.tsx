@@ -1,4 +1,5 @@
 import axios from "axios";
+import Image from "next/image";
 
 interface Movie {
   id: string;
@@ -38,7 +39,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <p>Rating: {blog.rating}</p>
       <p>Category: {blog.category}</p>
       <p>View Count: {blog.viewCount}</p>
-      <img src={blog.posterImage} alt={blog.title} />
+      <Image src={blog.posterImage} alt={blog.title} />
     </div>
   );
 }

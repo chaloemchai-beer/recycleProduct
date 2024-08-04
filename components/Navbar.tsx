@@ -71,6 +71,10 @@ const Navbar = ({ links, enableScroll }: NavbarProps) => {
         ))}
       </ul>
 
+      <div className="hidden md:flex bg-black p-2 rounded-md text-white hover:bg-gray-60">
+        <Link href="login">Log In</Link>
+      </div>
+
       <div
         onClick={() => setNav(!nav)}
         className="cursor-pointer pr-4 z-10 text-black md:hidden"
@@ -84,7 +88,7 @@ const Navbar = ({ links, enableScroll }: NavbarProps) => {
         } transition-transform duration-300 ease-in-out`}
       >
         {nav && (
-          <ul className="flex flex-col justify-center items-center h-full">
+          <ul className="flex flex-col justify-center items-center p-10">
             {links.map((data: any) => (
               <li
                 key={data.id}
@@ -100,6 +104,14 @@ const Navbar = ({ links, enableScroll }: NavbarProps) => {
             ))}
           </ul>
         )}
+        <div className="flex flex-col justify-center items-center">
+          <Link
+            href="login"
+            className="px-4 cursor-pointer capitalize py-6 text-4xl justify-center items-center bg-black text-white rounded-3xl"
+          >
+            Log In
+          </Link>
+        </div>
       </div>
     </main>
   );

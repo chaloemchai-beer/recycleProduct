@@ -10,27 +10,27 @@ const links = [
   {
     id: 1,
     link: "#home",
-    name: "home",
+    name: "Home",
   },
   {
     id: 2,
     link: "#about",
-    name: "about",
+    name: "About",
   },
   {
     id: 3,
     link: "#product",
-    name: "product",
+    name: "Product",
   },
   {
     id: 4,
     link: "#blog",
-    name: "blog",
+    name: "Blog",
   },
   {
     id: 5,
     link: "#contact",
-    name: "contact",
+    name: "Contact",
   },
 ];
 
