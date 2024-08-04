@@ -1,5 +1,7 @@
 "use client"
 
+import Image from "next/image";
+
 interface ContentList {
     category: string;
     title: string;
@@ -34,10 +36,12 @@ const ContentLists = ({contentlists}: ContentListProps) => {
                 <p className="text-gray-700">{article.excerpt}</p>
               </div>
               <div>
-                <img
+                <Image
                   src={article.image}
                   alt={article.title}
                   className="w-full h-48 object-cover rounded"
+                  width={300}
+                height={300}
                 />
               </div>
             </div>
